@@ -1,17 +1,17 @@
 import csv
 
-with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as f:
-    fr = csv.reader(f, delimiter=';')
+lim_year = 16
 
-    c1 = 0
-    c2 = 0
+with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as file:
+    file_reader = csv.reader(file, delimiter=';')
 
-    findit = input('Введите имя, фамилию или отчество автора, чтобы я смог найти его книги, поступившие к нам до 2016 года:')
+    findit = input('Введите имя, фамилию или отчество автора, чтобы я смог найти его книги, поступившие к нам до 2016 '
+                   'года:')
 
-    for i in fr:
-        c1 += 1
-
-        if c1 == 1:
-            continue
-        elif findit.lower() in i[4].lower() and int(i[6][8] + i[6][9]) < 16:
-            print(f'Автор: {i[4]} - Название книги: {i[1]}')
+    next(file_reader)
+    for line in file_reader:
+        author = line[4]
+        year = int(line[6][8:10])
+        if findit.lower() in author.lower() and year < lim_year:
+            book_name = line[1]
+            print(f'Автор: {author} - Название книги: {book_name}')

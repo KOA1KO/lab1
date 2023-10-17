@@ -1,7 +1,7 @@
-c = 0
+allsum = 0
 
-with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as f:
-    for line in f:
-        c += 1
-    print('Количество записей в файле: ' + str(c))
+with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as file:
+    for line in file:
+        allsum += 1
+    print(f'Количество записей в файле: {allsum}')
 

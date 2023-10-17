@@ -1,10 +1,12 @@
 import csv
-c = 0
 
-with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as f:
-    fr = csv.reader(f, delimiter=';')
+allsum = 0
+MAX_NAME = 30
 
-    for line in fr:
-        if len(line[1]) > 30:
-            c += 1
-    print('Количество записей, у которых поле "Название" строка длиннее 30 символов: ' + str(c))
+with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as file:
+    file_reader = csv.reader(file, delimiter=';')
+
+    for line in file_reader:
+        if len(line[1]) > MAX_NAME:
+            allsum += 1
+    print(f'Количество записей, у которых поле "Название" строка длиннее 30 символов: {allsum}')

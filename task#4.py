@@ -1,22 +1,30 @@
 import random
 import csv
 
-with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as f:
-    spisok = csv.reader(f, delimiter=';')
+min_num = 1
+max_num = 9410
+
+num_of_gen = 20
+
+with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as file:
+    spisok = csv.reader(file, delimiter=';')
 
     text = []
     spisok_full = []
 
-    for y in spisok:
-        spisok_full.append(y[3] + '. "' + y[1] + '" - ' + y[6][6] + y[6][7] + y[6][8] + y[6][9])
+    for line in spisok:
+        author = line[3]
+        book_name = line[1]
+        year = line[6][6:10]
+        spisok_full.append(f'{author} - "{book_name}" - {year}')
 
-    for i in range(20):
-        gen = random.randint(1, 9410)
+    for row in range(num_of_gen):
+        gen = random.randint(min_num, max_num)
         text.append(spisok_full[gen])
 
 with open('generation.txt', '+w', encoding="cp1251", errors="ignore") as file:
     num = 0
-    for u in text:
+    for line in text:
         num += 1
-        file.write(str(num) + ' ' + u + ';\n')
+        file.write(f'{num} {line};\n')
 

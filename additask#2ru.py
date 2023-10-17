@@ -1,11 +1,14 @@
 import csv
 
-with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as f:
-    fr = csv.reader(f, delimiter=';')
-    res = (sorted(fr, reverse=True,  key=lambda fr: fr[8]))[1:21]
+with open('lab1-main/books.csv', 'r', encoding="cp1251", errors="ignore") as file:
+    file_reader = csv.reader(file, delimiter=';')
+    result = (sorted(file_reader, reverse=True,  key=lambda file_reader: file_reader[8]))[1:21]
 
     num = 0
 
-    for i in res:
+    for line in result:
         num += 1
-        print(str(num) + ' - Автор: ' + i[3] + ' - Название книги: ' + i[1] + ' - Кол-во выдач: ' + i[8])
+        author = line[3]
+        book_name = line[1]
+        given = line[8]
+        print(f'{num} - Автор: {author} - Название книги: {book_name} - Кол-во выдач: {given}')
